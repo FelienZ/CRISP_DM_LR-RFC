@@ -37,8 +37,7 @@ In medical diagnostics, a False Negative (telling a sick patient they are health
 | **Logistic Regression** | 82% | 85% | **88%** | 86% |
 | **Random Forest (Best)**| 80% | 85% | **88%** | 86% |
 
-> [!NOTE]
-> The Random Forest Classifier serves as the primary inference engine due to its exceptional Recall score of 97%, making it extremely reliable as a preliminary diagnostic tool.
+
 
 #### Feature Importance Analysis
 ![Feature Importance](docs/Feature-Importance.png)

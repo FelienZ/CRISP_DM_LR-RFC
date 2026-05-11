@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -20,7 +20,7 @@ const formSchema = z.object({
   ChestPain: z.enum(['Typical', 'Atypical', 'Non-anginal', 'Asymptomatic']),
   RestingBP: z.coerce.number().min(50).max(250),
   Cholesterol: z.coerce.number().min(0).max(600),
-  FastingBS: z.preprocess((val) => Number(val), z.union([z.literal(0), z.literal(1)])),
+  FastingBS: z.coerce.number(),
   MaxHR: z.coerce.number().min(50).max(250),
   ExerciseAngina: z.enum(['Yes', 'No']),
   Smoking: z.enum(['Yes', 'No']),
@@ -40,7 +40,7 @@ export default function Dashboard() {
   const { mutate: predict, data: result, isPending, isError, error } = usePredict();
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema as any),
     defaultValues: {
       Age: 50,
       Gender: 'Male',
